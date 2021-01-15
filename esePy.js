@@ -1,32 +1,5 @@
 let print = console.log
 
-//Array.prototype.append = function(value){
-//	this.push(value)
-//}
-//
-//Uint8Array.prototype.decode = function(decodeType='utf8'){
-//	if (decodeType==="ascii"){
-//		decodeType="utf8"
-//	}
-//	let decoder = new TextDecoder(decodeType)
-//	return decoder.decode(this)
-//}
-//
-//String.prototype.encode = function(decodeType='utf8'){
-//	if (decodeType==="ascii"){
-//		decodeType="utf8"
-//	}
-//	let encoder = new TextEncoder(decodeType)
-//	return encoder.encode(this)
-//}
-
-//Uint8Array.prototype.push = function(value){
-//	let view = new DataView(buffer, 0);
-//	let newArray = new Uint8Array(this.length)
-//	return encoder.encode(this)
-//}
-
-
 let bytearray = Uint8Array
 
 
@@ -117,8 +90,6 @@ let structFormatTypes = {
 }
 
 function pack(structStr){
-//	let structs = []
-
 	let datas = [...arguments]
 	datas.shift()
 	datas = datas.flat()
@@ -169,15 +140,12 @@ function pack(structStr){
 }
 
 function unpack(structStr, bytes){
-//	let structs = []
 	let endian = "little"
 	let byteSize = 0
 	let num = 0
 	let structs = structStr.matchAll(/([><]?)(\d*?)([xc\?bBhHiIlLqQnNefdspP])/g)
 	let dataPtr = 0
-//	let bytes = new Uint8Array()
 	let datas = []
-//	let byte = Uint8Array()
 	let data = 0
 
 	for ( const s of structs){
