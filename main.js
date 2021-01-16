@@ -37,7 +37,12 @@ async function wavConv(file,addArgs){
 
 	let bytes = {}
 
-	await ffmpeg.load();
+	try {
+		await ffmpeg.load();
+	}catch (e) {
+		print(e)
+		logOut.value = str(inPath)+" の変換に失敗しました (" + e + ")"
+	}
 	ffmpeg.FS('writeFile', inPath, await fetchFile(file))
 
 	let wavBytes = ffmpeg.FS('readFile', inPath)
