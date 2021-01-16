@@ -103,6 +103,7 @@ async function fileSelected(e){
 	const prgDiv = document.getElementById("prgDiv")
 	const progress = document.createElement("progress")
 
+	progress.classList.add( "progress", "is-primary" )
 	progress.id = "progress"
 	progress.max = len(this.files)
 	progress.value = 0
