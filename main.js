@@ -69,6 +69,10 @@ async function wavConv(file,addArgs){
 		bytes[key] = ffmpeg.FS('readFile', inPath.with_suffix("."+str(key)))
 	}
 
+	ffmpeg.FS("unlink", inPath)
+	ffmpeg.FS("unlink", inPath.with_suffix(".ogg"))
+	ffmpeg.FS("unlink", inPath.with_suffix(".m4a"))
+
 	if (loopEnable){
 		let m4a = new M4aFile.M4aFile()
 		m4a.read(bytes["m4a"])
@@ -84,6 +88,7 @@ async function wavConv(file,addArgs){
 	let aObj = {}
 	aObj["ogg"] = {"data":bytes["ogg"],"name":inPath.with_suffix(".ogg")}
 	aObj["m4a"] = {"data":bytes["m4a"],"name":inPath.with_suffix(".m4a")}
+
 
 	progress.value += 1
 
