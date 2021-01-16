@@ -21,6 +21,8 @@ async function wavConv(file,addArgs){
 	const logDiv = document.getElementById("logDiv")
 	const logOut = document.createElement("output")
 	const brElm = document.createElement("br")
+	const progress = document.getElementById("progress")
+
 
 	logDiv.appendChild(logOut)
 	logDiv.appendChild(brElm)
@@ -83,6 +85,8 @@ async function wavConv(file,addArgs){
 	aObj["ogg"] = {"data":bytes["ogg"],"name":inPath.with_suffix(".ogg")}
 	aObj["m4a"] = {"data":bytes["m4a"],"name":inPath.with_suffix(".m4a")}
 
+	progress.value += 1
+
 	return aObj
 }
 
@@ -91,9 +95,23 @@ async function fileSelected(e){
 
 	const logOut = document.createElement("output")
 	const logDiv = document.getElementById("logDiv")
+	const prgDiv = document.getElementById("prgDiv")
+	const progress = document.createElement("progress")
+
+	progress.id = "progress"
+	progress.max = len(this.files)
+	progress.value = 0
+
 	while(logDiv.firstChild){
 		logDiv.removeChild(logDiv.firstChild)
 	}
+
+	while(prgDiv.firstChild){
+		prgDiv.removeChild(prgDiv.firstChild)
+	}
+
+	prgDiv.appendChild(progress)
+
 
 	let addArgs = {}
 	addArgs["ogg"] = document.getElementById("oggArgs").value.split(/\s+/)
@@ -126,7 +144,7 @@ async function fileSelected(e){
 	downLoadElm.href = URL.createObjectURL(blob, {type: "blob"})
 	downLoadElm.dataset.downloadurl = ["text/plain", downLoadElm.download, downLoadElm.href].join(":")
 	await downLoadElm.click()
-	logOut.value = await "終了"
+	logOut.value = await "変換終了"
 
 }
 

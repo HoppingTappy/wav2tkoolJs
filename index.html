@@ -3,14 +3,42 @@
 <meta charset="UTF-8" />
 <head>
 	<title>wav2tkool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css">
 	<script type="module" src="main.js"></script>
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes" />
 </head>
 	<body>
-		<input type="text" id="oggArgs" />ogg 用の追加引数<br>
-		<input type="text" id="m4aArgs" />m4a 用の追加引数<br>
-		<input type="file" accept=".wav" multiple id="fileSelect" /><br>
-		<div id="logDiv">
-		</div>
+		<section class="section">
+			<div class="container">
+				<h1 class="title">これは何？</h1>
+				<div class="content">
+					wav を ffmpeg.wasm を使って ogg と m4a に変換します。<br>
+					smpl チャンクがあればループ用のタグも付けます。<br>
+				</div>
+				<h1 class="title">使い方</h1>
+				<div class="content">
+					変換したい wav を選択すると変換が始まります。<br>
+					すべての変換が終わると zip ファイルが生成され、ダウンロードされます。<br>
+				</div>
+				<div class="level">
+					<div class="file">
+						<label class="file-label">
+							<input class="file-input" type="file" accept=".wav" multiple id="fileSelect" name="resume">
+							<span class="file-cta">
+								<span class="file-label">
+									wav ファイル選択
+								</span>
+							</span>
+						</label>
+					</div>
+					<input class="input" type="text" id="oggArgs" placeholder="ogg 変換用の追加引数(例:-ab 192)"/>
+					<input class="input" type="text" id="m4aArgs" placeholder="m4a 変換用の追加引数(例:-ab 192)"/>
+				</div>
+				<div id="prgDiv" class="content">
+				</div>
+				<div id="logDiv" class="content">
+				</div>
+			</div>
+		</section>
 	</body>
 </html>
